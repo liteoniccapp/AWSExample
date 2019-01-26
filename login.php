@@ -13,10 +13,9 @@ $sql = "select * from userdata where userId = :userId and userPwd = :userPwd ";
 $result = $linkDb->prepare($sql);
 
 //執行sql查詢 並將使用者的表單資料送入
-$result->execute(
-    ['userId' => $_POST['id'] ,
-     'userPwd' => md5( $_POST['pwd'] )]
-);
+$data['userId'] = $_POST['id'];
+$data['userPwd'] = md5($_POST['pwd']);
+$result->execute($data);
 
 //從result 中匯出結果
 $row = $result->fetchAll();

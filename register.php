@@ -13,12 +13,12 @@ $sql = "insert into userdata (userId,userPwd,userName , email,createDate) values
 $result = $linkDb->prepare($sql);
 
 // 執行sql 並在此時將使用者資料給入
-$status = $result->execute(
-    [ 'userId' => $_POST['userId'] ,
-      'userPwd'=> md5($_POST['userPwd']) ,
-      'userName' => $_POST['userName'] ,
-      'email' => $_POST['email'],
-      'createDate' => date('Y-m-d') ]);
+$data['userId'] = $_POST['userId'];
+$data['userPwd'] = md5($_POST['userPwd']);
+$data['userName'] = $_POST['userName'];
+$data['email'] = $_POST['email'];
+$data['createDate'] = date('Y-m-d');
+$status = $result->execute($data);
 
 // 狀態會記錄 true or false 來看是否寫入成功
 if ($status )
